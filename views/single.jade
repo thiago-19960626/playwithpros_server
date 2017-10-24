@@ -1,0 +1,82 @@
+extends layout
+
+block content
+    .content-wrapper
+        form(action='/save/#{id}', method='post', id='form-save')
+            .section.content-header
+                h1
+                    |Video Title
+            .section.content
+                .row
+                    .col-md-6
+                        .box.box-primary
+                            .box-body
+                                video(width='50%', id='video1')
+                                    source(type='video/mp4', src='http://#{video.video_link}')
+                                video(width='50%', id='video2')
+                                    source(type='video/mp4', src='http://#{video.video_link}')
+                        .box.box-primary
+                            .box-header.with-border
+                                h3.box-Title
+                                    |Position Setting
+                            .box-body
+                                .row
+                                    .col-xs-6
+                                        .form-group
+                                            input.form-control(type='number', id='video-pos', value='#{video.position?video.position:0}', name='position')
+                                    .col-xs-3
+                                        button.btn.btn-primary(type='button', id='btn-start')
+                                            |Play
+                                    .col-xs-3
+                                        button.btn.btn-primary(type='button', id='btn-set')
+                                            |Set
+                    .col-md-6
+                        .box.box-primary
+                            .box-header.with-border
+                                h3.box-Title
+                                    |Video Settings
+                            .box-body
+                                .form-group
+                                    label
+                                        |Video Title
+                                    input.form-control(type='text', disabled='true', value='Video1')
+                                .form-group
+                                    label
+                                        |Category
+                                    select.form-control(name='category', id='video-category', value='#{video.category}')
+                                        option
+                                            |Basketball
+                                        option
+                                            |Football
+                                        option
+                                            |Soccer
+                                .form-group
+                                    label
+                                        |Video type
+                                    input.form-control(type="text", disabled="true", value='#{video.type}')
+                                .form-group
+                                    label
+                                        |Created At
+                                    input.form-control(type="text", disabled="true", value='#{moment(video.created_at).format("YYYY-MM-DD h:mm")}')
+                                .form-group
+                                    label
+                                        |Status
+                                    select.form-control(disabled='true', value='#{video.status}')
+                                        option(value='pending')
+                                            |Pending
+                                        option(value="approve")
+                                            |Approved
+                                input(type='hidden', value='#{id}', id='vid')
+                .section-footer
+                    if(video.status == 0)
+                        button.btn-save.btn.btn-primary(type='button', action='approve')
+                            |Approve
+                        |&nbsp;
+                        button.btn-save.btn.btn-default(type='button', action='deny')
+                            |Deny
+                    if(video.status == 1)
+                        button.btn-save.btn.btn-primary(type='button', action='approve')
+                            |Save changes
+                        |&nbsp;
+                        button.btn-save.btn.btn-default(type='button', action='deny')
+                            |Delete

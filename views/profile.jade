@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    .content-wrapper
+        .section.content-header
+            h1
+                |Profile Settings
+        .section.content
+            .row
+                .col-md-6
+                    .box.box-primary
+                        .box-header.with-border
+                            h3.box-title
+                                |Personal Information
+                        .box-body
+                            .form-group
+                                img.user-image(src='/dist/img/user2-160x160.jpg')
+                            .form-group
+                                label
+                                    | First Name
+                                input.form-control(type="text")
+                            .form-group
+                                label
+                                    | Last Name
+                                input.form-control(type="text")
+                            .form-group
+                                label
+                                    | Avatar
+                                input(type="file")
+                        .box-header.with-border
+                            h3.box-title
+                                |Security Information
+                        .box-body
+                            .form-group
+                                label
+                                    | Password
+                                input.form-control(type="password")
+                            .form-group
+                                label
+                                    | Confirm Password
+                                input.form-control(type="password")
+                        .box-footer
+                            button.btn.btn-primary(type="submit")
+                                |Save changes
